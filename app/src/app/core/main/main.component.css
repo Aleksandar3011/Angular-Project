@@ -1,0 +1,47 @@
+
+
+
+h1 {
+    text-align: center;
+    font-size: xx-large;
+    font-weight: bolder;
+    padding-top: 10px;
+}
+
+p{
+    font-family: "Lato", sans-serif;
+    text-align: justify;
+}
+
+.example-card {
+  max-width: 300px;
+  margin: 10px;
+}
+
+
+
+mat-card-subtitle{
+    font-size: 18px;
+}
+
+mat-card-title{
+    color: green;
+    font-size: 30px;
+    justify-content: center;
+    display: flex;
+}
+
+.card {
+    display: inline-flex;
+    /* text-align: center; */
+    margin-left: 290px;
+    margin-top: 20px;
+}
+
+.top-three {
+    text-align: center;
+    margin-top: 200px;
+    font-size: larger;
+    font-weight: bold;
+    font-style: italic;
+}
