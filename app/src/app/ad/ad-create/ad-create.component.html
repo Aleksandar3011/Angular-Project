@@ -1,25 +1,42 @@
-<div>
-    <h1>Create</h1>
-    <form>
-        <mat-form-field appearance="fill">
-            <mat-label>Title</mat-label>
-            <input matInput>
-        </mat-form-field>
-  <mat-form-field appearance="fill">
-    <mat-label>About us:</mat-label>
-    <textarea matInput></textarea>
-  </mat-form-field>
-  <mat-form-field appearance="fill">
+<mat-card>
+  <h1>Create</h1>
+  <form (submit)="onAddAd(adForm)" #adForm="ngForm">
+
+    <mat-form-field appearance="fill">
+      <mat-label>Title</mat-label>
+      <input
+        matInput
+        name="title"
+        ngModel
+        required
+        minlength="3"
+        #title>
+        <mat-error *ngIf="title">Please enter a ad title!</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>About us:</mat-label>
+      <textarea
+        matInput
+        name="about"
+        ngModel
+        required
+        #about
+      ></textarea>
+      <mat-error *ngIf="about">Please enter about us information!</mat-error>
+    </mat-form-field>
+
+    <mat-form-field >
       <mat-label>If you have:</mat-label>
       <textarea matInput></textarea>
     </mat-form-field>
+
     <mat-form-field appearance="fill">
-        <mat-label>We Offer:</mat-label>
-        <textarea matInput></textarea>
-      </mat-form-field>
-  
-    
-    <button mat-flat-button color="primary">Create</button>
-</form>
-</div>
-  
+      <mat-label>We Offer:</mat-label>
+      <textarea matInput></textarea>
+    </mat-form-field>
+
+
+    <button mat-raised-button color="primary" type="submit">Create</button>
+  </form>
+</mat-card>

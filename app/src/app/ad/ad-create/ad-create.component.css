@@ -1,3 +1,6 @@
+mat-card {
+  background-color: #D3D3D3;
+}
 
 h1 {
     text-align: center;
@@ -14,7 +17,7 @@ form{
   }
 
   mat-form-field {
-    width: 30%;
+    width: 40%;
   }
 
   button {

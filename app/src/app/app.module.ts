@@ -18,14 +18,14 @@ import { AdModule } from './ad/ad.module';
     providers: [],
     bootstrap: [AppComponent],
     imports: [
-        AngularMaterialModule,
-        BrowserAnimationsModule,
-        BrowserModule,
-        AppRoutingModule,
-        FormsModule,
-        CoreModule,
-        AuthModule,
-        AdModule
+      AngularMaterialModule,
+      BrowserAnimationsModule,
+      BrowserModule,
+      AppRoutingModule,
+      AdModule,
+      FormsModule,
+      CoreModule,
+      AuthModule,
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

@@ -10,5 +10,12 @@ example-card {
     border-radius: 10px;
     padding: 1em;
     box-shadow: 0px 10px 5px;
-   
+    margin-bottom: 1rem;
+}
+
+#noPost {
+    text-align: center;
+    font-size: larger;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 }

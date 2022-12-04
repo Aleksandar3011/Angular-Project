@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms'
+import { HttpClientModule } from '@angular/common/http'
+
 import { AdListComponent } from './ad-list/ad-list.component';
 import { AdCreateComponent } from './ad-create/ad-create.component';
 import { AdEditComponent } from './ad-edit/ad-edit.component';
@@ -16,12 +19,14 @@ import { AngularMaterialModule } from '../angular-material.module';
     AdDetailComponent
   ],
   imports: [
-    AngularMaterialModule,
     CommonModule,
+    AngularMaterialModule,
+    FormsModule,
+    HttpClientModule,
   ],
   exports: [
-    AdListComponent,
     AdCreateComponent,
+    AdListComponent,
     AdEditComponent,
     AdDetailComponent
   ]

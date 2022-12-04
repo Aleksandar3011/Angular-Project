@@ -1,10 +1,12 @@
 mat-toolbar {
+
     background-color: #234465;
 }
 .spacer {
     flex: 1 1 auto;
 }
 
-span {
+.home {
+    
     background-color: #ffa000;
 }
