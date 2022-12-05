@@ -1,6 +1,6 @@
 <h1>JOBS ADS</h1>
-
-<div *ngIf="ads.length> 0">
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<div *ngIf="ads.length> 0 && !isLoading">
     <mat-card *ngFor="let ad of ads">
 
       <ng-container>
@@ -9,7 +9,9 @@
             {{ad.title}}
           </mat-card-title>
         </mat-card-header>
-
+        <div class="post-image">
+          <img [src]="ad.imagePath" [alt]="ad.title">
+        </div>
         <mat-card-content>
           <p>
             Tech Stack: {{ad.tech}}
@@ -32,4 +34,4 @@
 </mat-card>
 </div>
 
-<p id="noPost" class="mat-body-1" *ngIf="ads.length <= 0">Not ads added yet!</p>
+<p id="noPost" class="mat-body-1" *ngIf="ads.length <= 0 && !isLoading">Not ads added yet!</p>

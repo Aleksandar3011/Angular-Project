@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require("body-parser");
 const mongoose = require('mongoose');
+const path = require('path')
 
 const adsRoutes = require("./routes/ads")
 
@@ -21,6 +22,7 @@ mongoose.connect("mongodb+srv://aleks3011:ariesdani9@cluster0.iipjqgk.mongodb.ne
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use("/images", express.static(path.join("backend/images")))
 
 //'GET, PUT, POST, PATCH,  DELETE'
 app.use((req,res,next) => {

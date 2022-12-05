@@ -4,4 +4,5 @@ export interface IAd {
     itField: string | undefined;
     title: string | undefined;
     about: string | undefined;
+    imagePath: string | undefined
 }

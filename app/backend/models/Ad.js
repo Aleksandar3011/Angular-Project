@@ -17,6 +17,10 @@ const adSchema = mongoose.Schema({
   about: {
     type: String,
     required: true
+  },
+  imagePath: {
+    type: String,
+    required: true
   }
 });
 
