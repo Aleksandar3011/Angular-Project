@@ -6,6 +6,14 @@ const adSchema = mongoose.Schema({
     type: String,
     required: true
   },
+  tech: {
+    type: String,
+    required: true
+  },
+  itField: {
+    type: String,
+    required: true
+  },
   about: {
     type: String,
     required: true

@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
+
 import { AdCreateComponent } from './ad/ad-create/ad-create.component';
 import { AdListComponent } from './ad/ad-list/ad-list.component';
 import { LoginComponent } from './auth/login/login.component';
@@ -16,29 +18,33 @@ const routes: Routes = [
   },
   {
     path: 'about',
-    component: AboutComponent    
+    component: AboutComponent
   },
   {
     path: 'auth/login',
-    component: LoginComponent    
+    component: LoginComponent
   },
   {
     path: 'auth/register',
-    component: RegisterComponent    
+    component: RegisterComponent
   },
   {
     path: 'ad/dashboard',
-    component: AdListComponent 
+    component: AdListComponent
   },
   {
     path: 'ad/create',
-    component: AdCreateComponent    
+    component: AdCreateComponent
+  },
+  {
+    path: 'edit/:adId',
+    component: AdCreateComponent
   },
   { path: '**',
     pathMatch: 'full',
-    component: NotFoundComponent 
+    component: NotFoundComponent
   }
-  
+
 ];
 
 @NgModule({

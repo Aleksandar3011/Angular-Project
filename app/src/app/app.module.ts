@@ -18,10 +18,10 @@ import { AdModule } from './ad/ad.module';
     providers: [],
     bootstrap: [AppComponent],
     imports: [
-      AngularMaterialModule,
-      BrowserAnimationsModule,
       BrowserModule,
       AppRoutingModule,
+      AngularMaterialModule,
+      BrowserAnimationsModule,
       AdModule,
       FormsModule,
       CoreModule,

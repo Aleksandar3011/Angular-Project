@@ -10,11 +10,6 @@ import { AdsService } from '../ads.service';
   styleUrls: ['./ad-list.component.css']
 })
 export class AdListComponent implements OnInit, OnDestroy {
-  // ads = [
-  //   {title: 'First Ad', description: 'This is FIrst Ad'},
-  //   {title: 'Second Ad', description: 'This is Second Ad'},
-  //   {title: 'THird Ad', description: 'This is THird Ad'},
-  // ]
 
   ads: IAd[] = []
   private adsSub!: Subscription;

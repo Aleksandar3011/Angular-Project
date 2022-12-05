@@ -3,19 +3,25 @@
 <div *ngIf="ads.length> 0">
     <mat-card *ngFor="let ad of ads">
 
+      <ng-container>
         <mat-card-header>
-            <mat-card-title>
-                {{ad.title}}
-            </mat-card-title>
+          <mat-card-title>
+            {{ad.title}}
+          </mat-card-title>
         </mat-card-header>
 
-    <mat-card-content>
-    <p>
-        {{ad.about}}
-    </p>
-</mat-card-content>
+        <mat-card-content>
+          <p>
+            Tech Stack: {{ad.tech}}
+          </p>
+          <p>
+            IT Field: {{ad.itField}}
+          </p>
+        </mat-card-content>
+      </ng-container>
+
 <mat-action-row>
-  <button mat-button color="accent">EDIT</button>
+  <a mat-button color="accent" [routerLink]="['/edit', ad.id]">EDIT</a>
   <button mat-button color="warn" (click)="onDelete(ad.id)">DELETE</button>
 </mat-action-row>
 

@@ -1,13 +1,13 @@
 <mat-card>
   <h1>Create</h1>
-  <form (submit)="onAddAd(adForm)" #adForm="ngForm">
+  <form (submit)="onSaveAd(adForm)" #adForm="ngForm">
 
     <mat-form-field appearance="fill">
       <mat-label>Title</mat-label>
       <input
         matInput
         name="title"
-        ngModel
+        [ngModel]="ad?.title"
         required
         minlength="3"
         #title>
@@ -15,11 +15,35 @@
     </mat-form-field>
 
     <mat-form-field appearance="fill">
+      <mat-label>Tech Stack:</mat-label>
+      <textarea
+        matInput
+        name="tech"
+        [ngModel]="ad?.tech"
+        required
+        #tech
+      ></textarea>
+      <mat-error *ngIf="tech">Please enter tech stack information!</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>IT Field:</mat-label>
+      <textarea
+        matInput
+        name="itField"
+        [ngModel]="ad?.itField"
+        required
+        #itField
+      ></textarea>
+      <mat-error *ngIf="itField">Please enter IT field information!</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
       <mat-label>About us:</mat-label>
       <textarea
         matInput
         name="about"
-        ngModel
+        [ngModel]="ad?.about"
         required
         #about
       ></textarea>

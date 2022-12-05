@@ -8,6 +8,7 @@ import { AdCreateComponent } from './ad-create/ad-create.component';
 import { AdEditComponent } from './ad-edit/ad-edit.component';
 import { AdDetailComponent } from './ad-detail/ad-detail.component';
 import { AngularMaterialModule } from '../angular-material.module';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -20,9 +21,10 @@ import { AngularMaterialModule } from '../angular-material.module';
   ],
   imports: [
     CommonModule,
-    AngularMaterialModule,
-    FormsModule,
     HttpClientModule,
+    FormsModule,
+    AngularMaterialModule,
+    RouterModule,
   ],
   exports: [
     AdCreateComponent,

@@ -1,14 +1,17 @@
 <mat-toolbar>
-    <!-- <span>JOBS App</span> -->
     <a class="home" mat-button routerLink="/">JOBS App</a>
 
     <span class="spacer"></span>
 
-    <a mat-button routerLink="/ad/dashboard">JOBS</a>
-    <a mat-button routerLink="/about">About</a>
-    <a mat-button routerLink="/ad/create">Create</a>
-    <a mat-button routerLink="/auth/login">Login</a>
-    <a mat-button routerLink="/auth/register">Register</a>
-    <a mat-button routerLink="">Logout</a>
+<ul class="nav">
+  <li class="links">
+    <a mat-button routerLink="/ad/dashboard" routerLinkActive="mat-accent">JOBS</a>
+    <a mat-button routerLink="/about" routerLinkActive="mat-accent">About</a>
+    <a mat-button routerLink="/ad/create" routerLinkActive="mat-accent">Create</a>
+    <a mat-button routerLink="/auth/login" routerLinkActive="mat-accent">Login</a>
+    <a mat-button routerLink="/auth/register" routerLinkActive="mat-accent">Register</a>
+    <a mat-button routerLink="ad/logout" routerLinkActive="mat-accent">Logout</a>
+  </li>
+</ul>
 
 </mat-toolbar>

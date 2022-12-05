@@ -1,5 +1,7 @@
 export interface IAd {
     id: any;
-    title: string;
-    about: string;
+    tech: string | undefined;
+    itField: string | undefined;
+    title: string | undefined;
+    about: string | undefined;
 }

@@ -7,6 +7,14 @@ mat-toolbar {
 }
 
 .home {
-    
     background-color: #ffa000;
+    font-size: large;
+}
+
+a {
+  font-size: medium;
+}
+
+.nav {
+  list-style: none;
 }
