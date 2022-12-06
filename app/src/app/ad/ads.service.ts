@@ -13,25 +13,26 @@ import { IAd } from "./ad.model";
 
 export class AdsService {
   private ads: IAd[] = [];
-  private adsUpdated = new Subject<IAd[]>();
+  private adsUpdated = new Subject<{ ads: IAd[]; adsCount: number}>();
 
   constructor(private http: HttpClient, private router: Router) {  }
 
-  getAds(){
-    this.http.get<{message: string, ads: any}>('http://localhost:3000/api/ads')
+  getAds(adsPerPage: number, currentAd: number){
+    const queryParams = `?pagesize=${adsPerPage}&page${currentAd}`;
+    this.http.get<{message: string, ads: any, maxAds: number}>('http://localhost:3000/api/ads' + queryParams)
       .pipe(map((adData) => {
-        return adData.ads.map((ad: { _id: any; title: any; itField: any; tech: any; about: any; imagePath: any;}) => ({
+        return { ads: adData.ads.map((ad: { _id: any; title: any; itField: any; tech: any; about: any; imagePath: any}) => ({
           id: ad._id,
           title: ad.title,
           tech: ad.tech,
           itField: ad.itField,
           about: ad.about,
           imagePath: ad.imagePath
-        }))
+        })), maxAds: adData.maxAds}
       }))
-      .subscribe((transformedAds) => {
-        this.ads = transformedAds;
-        this.adsUpdated.next([...this.ads]);
+      .subscribe((transformedAdsData) => {
+        this.ads = transformedAdsData.ads;
+        this.adsUpdated.next({ads:[...this.ads], adsCount: transformedAdsData.maxAds});
       });
   }
 
@@ -43,59 +44,81 @@ export class AdsService {
     return this.http.get<{_id: string, title: string, tech: string, itField: string, about: string, imagePath: string}>(`http://localhost:3000/api/ads/` + id);
   }
 
-  addAd(title: string, tech: string, itField: string, about: string, image: File){
-    // const ad: IAd = {id: null, title: title, tech: tech, itField: itField, about: about };
+  addAd(title: string, tech: string, itField: string, about: string, image: string){
+    // const ad: IAd = {id: null, title: title, tech: tech, itField: itField, about: about, };
     const adData = new FormData();
-    adData.append('title', title);
-    adData.append('tech', tech);
-    adData.append('itField', itField);
-    adData.append('about', about);
-    adData.append('image', image, title);
+    adData.append("title", title);
+    adData.append("tech", tech);
+    adData.append("itField", itField);
+    adData.append("about", about);
+    adData.append("image", image, title);
     this.http.post<{message: string, ad: IAd}>('http://localhost:3000/api/ads', adData)
       .subscribe((responseData) => {
-        const ad: IAd = {id: responseData.ad.id, title: title, tech: tech, itField: itField, about: about, imagePath: responseData.ad.imagePath}
-        this.ads.push(ad)
-        this.adsUpdated.next([...this.ads]);
+        // const ad: IAd = {
+        //   id: responseData.ad.id,
+        //   title: title,
+        //   tech: tech,
+        //   itField: itField,
+        //   about: about,
+        //   imagePath: responseData.ad.imagePath
+        // };
+        // this.ads.push(ad)
+        // this.adsUpdated.next([...this.ads]);
         this.router.navigate(["ad/dashboard"])
+        //I AM HERE NOW, THIS IS LAST STEP
       });
   }
 
 
-  updateAd(id: string, title: string, tech: string, itField: string, about: string, image: File | string) {
+  updateAd(id: string, title: string, tech: string, itField: string, about: string, image: string | File) {
+    // const ad: IAd = {id: id, title: title, tech: tech, itField: itField, about: about, image: imagePath}
     let adData: IAd | FormData;
-    // const ad: IAd = {id: id, title: title, tech: tech, itField: itField, about: about, imagePath: null as any}
-    if (typeof(image) === 'object'){
-       adData = new FormData();
-      adData.append('id', id)
-      adData.append('title', title)
-      adData.append('tech', tech)
-      adData.append('itField', itField)
-      adData.append('about', about)
-      adData.append('image', image, title)
+    if (typeof image === "object") {
+      adData = new FormData();
+      adData.append("id", id);
+      adData.append("title", title);
+      adData.append("tech", tech);
+      adData.append("itField", itField);
+      adData.append("about", about);
+      adData.append("image", image, title);
     } else {
-       adData = {id: id, title: title, tech: tech, itField: itField, about: about, imagePath: image}
+      adData = {
+        id: id,
+        title: title,
+        tech: tech,
+        itField: itField,
+        about: about,
+        imagePath: image
+      };
     }
-    this.http
-      .put(`http://localhost:3000/api/ads/` + id, adData)
+    this.http.put(`http://localhost:3000/api/ads/` + id, adData)
       .subscribe(response => {
-        const updatedAd = [...this.ads];
-        const oldAdIndex = updatedAd.findIndex(a => a.id == id);
-        const ad: IAd = {id: id, title: title, tech: tech, itField: itField, about: about, imagePath: '' }
-        updatedAd[oldAdIndex] = ad;
-        this.ads = updatedAd;
-        this.adsUpdated.next([...this.ads]);
+        // const updatedAd = [...this.ads];
+        // const oldAdIndex = updatedAd.findIndex(a => a.id == id);
+        // const ad: IAd = {
+        //   id: id,
+        //   title: title,
+        //   tech: tech,
+        //   itField: itField,
+        //   about: about,
+        //   imagePath: ""
+        // };
+        // updatedAd[oldAdIndex] = ad;
+        // this.ads = updatedAd;
+        // this.adsUpdated.next([...this.ads]);
         this.router.navigate(["ad/dashboard"])
+        //I AM HERE NOW, THIS IS LAST STEP
 
       });
   }
 
   deleteAd(adId: string) {
-    this.http.delete('http://localhost:3000/api/ads/' + adId)
-      .subscribe(() => {
-        const updatedAd = this.ads.filter(ad => ad.id !== adId);
-        this.ads = updatedAd;
-        this.adsUpdated.next([...this.ads])
-      })
+   return this.http.delete('http://localhost:3000/api/ads/' + adId)
+      // .subscribe(() => {
+      //   const updatedAd = this.ads.filter(ad => ad.id !== adId);
+      //   this.ads = updatedAd;
+      //   this.adsUpdated.next([...this.ads])
+      // })
   }
 
 

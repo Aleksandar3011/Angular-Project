@@ -32,6 +32,6 @@
 </mat-card-actions>
 
 </mat-card>
+<mat-paginator [length]="totalAds" [pageSize]="adsPerPage" [pageSizeOptions]="pageSizeOptions" (page)="onChangedPage($event)" *ngIf="ads.length> 0"></mat-paginator>
 </div>
-
 <p id="noPost" class="mat-body-1" *ngIf="ads.length <= 0 && !isLoading">Not ads added yet!</p>

@@ -9,6 +9,7 @@ import { AdEditComponent } from './ad-edit/ad-edit.component';
 import { AdDetailComponent } from './ad-detail/ad-detail.component';
 import { AngularMaterialModule } from '../angular-material.module';
 import { RouterModule } from '@angular/router';
+// import { MatPaginator } from '@angular/material/paginator';
 
 
 
@@ -24,6 +25,7 @@ import { RouterModule } from '@angular/router';
     HttpClientModule,
     ReactiveFormsModule,
     AngularMaterialModule,
+    // MatPaginator,
     RouterModule,
   ],
   exports: [

@@ -48,13 +48,27 @@ router.post("", multer({storage: storage}).single('image'), (req, res) => {
 
 
 router.get('', (req, res, next) => {
-  Ad.find()
+  const pageSize = +req.query.pagesize;
+  const currentPage = + req.query.page;
+  const adQuery = Ad.find();
+  let fetchedAds;
+  if(pageSize && currentPage) {
+    adQuery
+      .skip(pageSize * (currentPage - 1))
+      .limit(pageSize);
+  }
+  adQuery.find()
   .then(documents => {
-    res.status(200).json({
-      message: 'Posts fetched succesfully!',
-      ads: documents
-    });
-  });
+    fetchedAds = documents;
+    return Ad.count();
+  })
+    .then(count => {
+      res.status(200).json({
+        message: 'Ads fetched successfully!',
+        ads: fetchedAds,
+        maxAds: count
+      })
+    })
 });
 
 //SOMETHING IS WRONG
