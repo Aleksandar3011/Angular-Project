@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { Subscription } from 'rxjs'
+import { AuthService } from 'src/app/auth/auth.service';
 
 import { IAd } from '../ad.model';
 import { AdsService } from '../ads.service';
@@ -14,13 +15,15 @@ export class AdListComponent implements OnInit, OnDestroy {
 
   ads: IAd[] = []
   private adsSub!: Subscription;
+  private authStatusSub!: Subscription;
   isLoading = false
   totalAds = 0;
   adsPerPage = 2;
   currentPage = 1;
   pageSizeOptions = [1, 2 ,5, 10];
+  userIsAuth = false;
 
-  constructor(public adsService: AdsService) {  }
+  constructor(public adsService: AdsService, private authService: AuthService) {  }
 
   ngOnInit(): void {
     this.isLoading = true;
@@ -30,6 +33,11 @@ export class AdListComponent implements OnInit, OnDestroy {
         this.isLoading = false;
         this.totalAds = adData.adsCount
         this.ads = adData.ads
+    });
+    this.userIsAuth = this.authService.getIsAuth();
+    this.authStatusSub = this.authService.getAuthStatusListener()
+    .subscribe(isAuth => {
+      this.userIsAuth = isAuth;
     });
   }
 
@@ -50,5 +58,6 @@ export class AdListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.adsSub.unsubscribe();
+    this.authStatusSub.unsubscribe();
   }
 }

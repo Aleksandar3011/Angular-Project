@@ -7,10 +7,20 @@
   <li class="links">
     <a mat-button routerLink="/ad/dashboard" routerLinkActive="mat-accent">JOBS</a>
     <a mat-button routerLink="/about" routerLinkActive="mat-accent">About</a>
-    <a mat-button routerLink="/ad/create" routerLinkActive="mat-accent">Create</a>
-    <a mat-button routerLink="/auth/login" routerLinkActive="mat-accent">Login</a>
-    <a mat-button routerLink="/auth/register" routerLinkActive="mat-accent">Register</a>
-    <a mat-button routerLink="ad/logout" routerLinkActive="mat-accent">Logout</a>
+
+    <ng-container *ngIf="userIsAuth">
+      <a mat-button routerLink="/ad/create" routerLinkActive="mat-accent">Create</a>
+    </ng-container>
+
+    <ng-container *ngIf="!userIsAuth">
+      <a mat-button routerLink="/auth/login" routerLinkActive="mat-accent">Login</a>
+      <a mat-button routerLink="/auth/signup" routerLinkActive="mat-accent">Register</a>
+    </ng-container>
+
+    <ng-container *ngIf="userIsAuth">
+    <button mat-button (click)="onLogout()">Logout</button>
+    </ng-container>
+
   </li>
 </ul>
 

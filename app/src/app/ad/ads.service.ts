@@ -54,6 +54,7 @@ export class AdsService {
     adData.append("image", image, title);
     this.http.post<{message: string, ad: IAd}>('http://localhost:3000/api/ads', adData)
       .subscribe((responseData) => {
+
         // const ad: IAd = {
         //   id: responseData.ad.id,
         //   title: title,

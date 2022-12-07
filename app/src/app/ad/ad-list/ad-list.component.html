@@ -22,14 +22,14 @@
         </mat-card-content>
       </ng-container>
 
-<mat-action-row>
+<mat-action-row *ngIf="userIsAuth">
   <a mat-button color="accent" [routerLink]="['/edit', ad.id]">EDIT</a>
   <button mat-button color="warn" (click)="onDelete(ad.id)">DELETE</button>
 </mat-action-row>
 
-<mat-card-actions>
+<!-- <mat-card-actions>
     <a mat-button style="background-color:#ffa000;color:white" routerlink="ad/detail"> DETAILS</a>
-</mat-card-actions>
+</mat-card-actions> -->
 
 </mat-card>
 <mat-paginator [length]="totalAds" [pageSize]="adsPerPage" [pageSizeOptions]="pageSizeOptions" (page)="onChangedPage($event)" *ngIf="ads.length> 0"></mat-paginator>

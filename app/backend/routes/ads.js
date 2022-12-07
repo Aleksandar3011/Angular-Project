@@ -3,6 +3,7 @@ const Ad = require('../models/Ad');
 const multer = require('multer');
 
 const router = express.Router();
+const checkAuth = require('../middleware/chech-auth');
 
 const MIME_TYPE_MAP = {
   'image/png': 'png',
@@ -26,7 +27,7 @@ const storage = multer.diskStorage({
     }
 });
 
-router.post("", multer({storage: storage}).single('image'), (req, res) => {
+router.post("", checkAuth, multer({storage: storage}).single('image'), (req, res) => {
   const url = req.protocol + '://' + req.get('host');
   const ad = new Ad({
     title: req.body.title,
@@ -72,7 +73,7 @@ router.get('', (req, res, next) => {
 });
 
 //SOMETHING IS WRONG
-router.put("/:id", multer({storage: storage}).single('image'), (req, res, next) => {
+router.put("/:id", checkAuth, multer({storage: storage}).single('image'), (req, res, next) => {
   let imagePath = req.body.imagePath;
   if(req.file) {
     const url = req.protocol + '://' + req.get('host');
@@ -111,7 +112,7 @@ router.get("/:id", (req, res, next) => {
   })
 })
 
-router.delete('/:id', (req, res, next) => {
+router.delete('/:id', checkAuth, (req, res, next) => {
   Ad.deleteOne({_id: req.params.id}).then(result => {
     console.log(result);
     res.json({message: 'Post deleted!'})

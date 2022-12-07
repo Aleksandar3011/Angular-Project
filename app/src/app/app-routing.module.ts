@@ -4,8 +4,9 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AdCreateComponent } from './ad/ad-create/ad-create.component';
 import { AdListComponent } from './ad/ad-list/ad-list.component';
+import { AuthGuard } from './auth/auth.guard';
 import { LoginComponent } from './auth/login/login.component';
-import { RegisterComponent } from './auth/register/register.component';
+import { SignupComponent } from './auth/signup/signup.component';
 import { AboutComponent } from './core/about/about.component';
 import { MainComponent } from './core/main/main.component';
 import { NotFoundComponent } from './core/not-found/not-found.component';
@@ -25,8 +26,8 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: 'auth/register',
-    component: RegisterComponent
+    path: 'auth/signup',
+    component: SignupComponent
   },
   {
     path: 'ad/dashboard',
@@ -34,11 +35,13 @@ const routes: Routes = [
   },
   {
     path: 'ad/create',
-    component: AdCreateComponent
+    component: AdCreateComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'edit/:adId',
-    component: AdCreateComponent
+    component: AdCreateComponent,
+    canActivate: [AuthGuard]
   },
   { path: '**',
     pathMatch: 'full',
@@ -49,6 +52,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [AuthGuard]
 })
 export class AppRoutingModule { }
