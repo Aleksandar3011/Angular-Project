@@ -22,12 +22,14 @@ export class AdListComponent implements OnInit, OnDestroy {
   currentPage = 1;
   pageSizeOptions = [1, 2 ,5, 10];
   userIsAuth = false;
+  userId!: string;
 
   constructor(public adsService: AdsService, private authService: AuthService) {  }
 
   ngOnInit(): void {
     this.isLoading = true;
     this.adsService.getAds(this.adsPerPage, this.currentPage);
+    this.userId = this.authService.getUserId();
     this.adsSub = this.adsService.getAdUpdateListener()
       .subscribe((adData: {ads: IAd[]; adsCount: number}) => {
         this.isLoading = false;
@@ -38,6 +40,7 @@ export class AdListComponent implements OnInit, OnDestroy {
     this.authStatusSub = this.authService.getAuthStatusListener()
     .subscribe(isAuth => {
       this.userIsAuth = isAuth;
+      this.userId = this.authService.getUserId();
     });
   }
 
@@ -53,6 +56,8 @@ export class AdListComponent implements OnInit, OnDestroy {
     this.isLoading = true;
     this.adsService.deleteAd(adId).subscribe(() => {
       this.adsService.getAds(this.adsPerPage, this.currentPage)
+    }, () => {
+      this.isLoading = false;
     });
   }
 

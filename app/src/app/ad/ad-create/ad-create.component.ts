@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/auth/auth.service';
 
 import { IAd } from '../ad.model';
 import { AdsService } from '../ads.service';
@@ -11,7 +13,7 @@ import { mimeType } from "./mime-type.validator";
   templateUrl: './ad-create.component.html',
   styleUrls: ['./ad-create.component.css']
 })
-export class AdCreateComponent implements OnInit {
+export class AdCreateComponent implements OnInit, OnDestroy {
   enteredTitle = ``;
   enteredAboutUs = ``;
   // ad: IAd | any;
@@ -20,12 +22,17 @@ export class AdCreateComponent implements OnInit {
   form!: FormGroup;
   imagePreview!: string;
 
+  private authStatusSub!: Subscription;
   private mode = '';
   private adId: any;
 
-  constructor(public adsService: AdsService, public route: ActivatedRoute) { }
+  constructor(public adsService: AdsService, public route: ActivatedRoute, private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.authStatusSub = this.authService.getAuthStatusListener().subscribe(
+      authStatus => {
+        this.isLoading = false;
+      })
     this.form = new FormGroup({
       'title': new FormControl(null, {
         validators: [Validators.required, Validators.minLength(3)]
@@ -51,7 +58,7 @@ export class AdCreateComponent implements OnInit {
         this.isLoading = true;
         this.adsService.getAd(this.adId).subscribe(adData => {
           this.isLoading = false;
-          this.ad = { id: adData._id, title: adData.title, tech: adData.tech, itField: adData.itField, about: adData.about, imagePath: adData.imagePath}
+          this.ad = { id: adData._id, title: adData.title, tech: adData.tech, itField: adData.itField, about: adData.about, imagePath: adData.imagePath, creator: adData.creator}
           this.form.setValue({ 'title': this.ad.title, 'tech': this.ad.tech, 'itField': this.ad.itField, 'about': this.ad.about, 'image': this.ad.imagePath });
         });
       } else {
@@ -84,4 +91,9 @@ export class AdCreateComponent implements OnInit {
     }
     this.form.reset();
   }
+
+  ngOnDestroy(): void {
+    this.authStatusSub.unsubscribe();
+  }
+
 }

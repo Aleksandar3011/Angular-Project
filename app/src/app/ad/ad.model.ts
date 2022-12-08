@@ -5,4 +5,5 @@ export interface IAd {
     title: string | undefined;
     about: string | undefined;
     imagePath: string | undefined
+    creator: string | any
 }

@@ -21,6 +21,11 @@ const adSchema = mongoose.Schema({
   imagePath: {
     type: String,
     required: true
+  },
+  creator: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: "User"
   }
 });
 

@@ -22,7 +22,7 @@
         </mat-card-content>
       </ng-container>
 
-<mat-action-row *ngIf="userIsAuth">
+<mat-action-row *ngIf="userIsAuth && userId == ad.creator">
   <a mat-button color="accent" [routerLink]="['/edit', ad.id]">EDIT</a>
   <button mat-button color="warn" (click)="onDelete(ad.id)">DELETE</button>
 </mat-action-row>

@@ -21,13 +21,14 @@ export class AdsService {
     const queryParams = `?pagesize=${adsPerPage}&page${currentAd}`;
     this.http.get<{message: string, ads: any, maxAds: number}>('http://localhost:3000/api/ads' + queryParams)
       .pipe(map((adData) => {
-        return { ads: adData.ads.map((ad: { _id: any; title: any; itField: any; tech: any; about: any; imagePath: any}) => ({
+        return { ads: adData.ads.map((ad: { _id: any; title: any; itField: any; tech: any; about: any; imagePath: any; creator: any}) => ({
           id: ad._id,
           title: ad.title,
           tech: ad.tech,
           itField: ad.itField,
           about: ad.about,
-          imagePath: ad.imagePath
+          imagePath: ad.imagePath,
+          creator: ad.creator
         })), maxAds: adData.maxAds}
       }))
       .subscribe((transformedAdsData) => {
@@ -41,7 +42,7 @@ export class AdsService {
   }
 
   getAd(id: string) {
-    return this.http.get<{_id: string, title: string, tech: string, itField: string, about: string, imagePath: string}>(`http://localhost:3000/api/ads/` + id);
+    return this.http.get<{_id: string, title: string, tech: string, itField: string, about: string, imagePath: string, creator: string}>(`http://localhost:3000/api/ads/` + id);
   }
 
   addAd(title: string, tech: string, itField: string, about: string, image: string){
@@ -89,7 +90,8 @@ export class AdsService {
         tech: tech,
         itField: itField,
         about: about,
-        imagePath: image
+        imagePath: image,
+        creator: null
       };
     }
     this.http.put(`http://localhost:3000/api/ads/` + id, adData)
