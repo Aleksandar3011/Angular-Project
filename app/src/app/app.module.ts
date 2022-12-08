@@ -8,7 +8,6 @@ import { CoreModule } from "./core/core.module";
 import { AngularMaterialModule } from './angular-material.module';
 import {MatDialogModule} from '@angular/material/dialog';
 
-import { AuthModule } from './auth/auth.module';
 import { AdModule } from './ad/ad.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth/auth-interceptor';
@@ -33,7 +32,7 @@ import { ErrorComponent } from './error/error.component';
       // FormsModule,
       CoreModule,
       MatDialogModule,
-      AuthModule,
+
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     entryComponents: [ErrorComponent]

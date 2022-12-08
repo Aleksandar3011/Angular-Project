@@ -34,6 +34,9 @@ const routes: Routes = [
     component: AdCreateComponent,
     canActivate: [AuthGuard]
   },
+  {
+    path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+  },
   { path: '**',
     pathMatch: 'full',
     component: NotFoundComponent

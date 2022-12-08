@@ -5,7 +5,10 @@ import { Router } from "@angular/router";
 import { Subject } from 'rxjs'
 import { map } from 'rxjs'
 
+import { environment } from "src/environments/environment";
 import { IAd } from "./ad.model";
+
+const BACKEND_URL = environment.apiUrl + '/ads/';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +22,7 @@ export class AdsService {
 
   getAds(adsPerPage: number, currentAd: number){
     const queryParams = `?pagesize=${adsPerPage}&page${currentAd}`;
-    this.http.get<{message: string, ads: any, maxAds: number}>('http://localhost:3000/api/ads' + queryParams)
+    this.http.get<{message: string, ads: any, maxAds: number}>(BACKEND_URL + queryParams)
       .pipe(map((adData) => {
         return { ads: adData.ads.map((ad: { _id: any; title: any; itField: any; tech: any; about: any; imagePath: any; creator: any}) => ({
           id: ad._id,
@@ -53,7 +56,7 @@ export class AdsService {
     adData.append("itField", itField);
     adData.append("about", about);
     adData.append("image", image, title);
-    this.http.post<{message: string, ad: IAd}>('http://localhost:3000/api/ads', adData)
+    this.http.post<{message: string, ad: IAd}>(BACKEND_URL, adData)
       .subscribe((responseData) => {
 
         // const ad: IAd = {
@@ -72,7 +75,7 @@ export class AdsService {
   }
 
 
-  updateAd(id: string, title: string, tech: string, itField: string, about: string, image: string | File) {
+  updateAd(id: string, title: string, tech: string, itField: string, about: string, image: string | undefined) {
     // const ad: IAd = {id: id, title: title, tech: tech, itField: itField, about: about, image: imagePath}
     let adData: IAd | FormData;
     if (typeof image === "object") {
@@ -94,7 +97,7 @@ export class AdsService {
         creator: null
       };
     }
-    this.http.put(`http://localhost:3000/api/ads/` + id, adData)
+    this.http.put(BACKEND_URL + id, adData)
       .subscribe(response => {
         // const updatedAd = [...this.ads];
         // const oldAdIndex = updatedAd.findIndex(a => a.id == id);
@@ -116,7 +119,7 @@ export class AdsService {
   }
 
   deleteAd(adId: string) {
-   return this.http.delete('http://localhost:3000/api/ads/' + adId)
+   return this.http.delete(BACKEND_URL + adId)
       // .subscribe(() => {
       //   const updatedAd = this.ads.filter(ad => ad.id !== adId);
       //   this.ads = updatedAd;

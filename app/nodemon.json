@@ -1,0 +1,6 @@
+{
+    "env": {
+        "MONGO_ATLAS_PASSWORD": "ariesdani9",
+        "JWT_KEY": "aerstrtdjymfnbseawrhtdnbfdv"
+    }
+}
