@@ -31,7 +31,7 @@ exports.updateAd = (req, res, next) => {
   let imagePath = req.body.imagePath;
   if(req.file) {
     const url = req.protocol + '://' + req.get('host');
-    imagePath = url + '/images/' + req.file.filename
+    imagePath = url + 'ads' + '/images/' + req.file.filename
   }
   const ad = new Ad({
     _id: req.body.id,
@@ -63,7 +63,7 @@ exports.updateAd = (req, res, next) => {
 
 exports.getAllAd = (req, res, next) => {
   const pageSize = +req.query.pagesize;
-  const currentPage = + req.query.page;
+  const currentPage = +req.query.page;
   const adQuery = Ad.find();
   let fetchedAds;
   if(pageSize && currentPage) {

@@ -15,17 +15,11 @@ mongoose.connect("mongodb+srv://aleks3011:" + process.env.MONGO_ATLAS_PASSWORD +
   .catch(() => {
     console.log(`Connection failed!`);
   });
-//   XICZFJ3R0nMpDjM0E3zJBqBx5hdApMNvLwpyctJzOTuHVfSqPP91HMmrBlu1wWAk
-// mongoose.connect("https://data.mongodb-api.com/app/data-pefwd/endpoint/data/v1")
-//   .then(() => {
-//     console.log(`Connected to database`);
-//   })
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use("/images", express.static(path.join("backend/images")))
 
-//'GET, PUT, POST, PATCH,  DELETE'
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(

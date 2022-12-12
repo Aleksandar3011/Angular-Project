@@ -8,7 +8,7 @@ import { map } from 'rxjs'
 import { environment } from "src/environments/environment";
 import { IAd } from "./ad.model";
 
-const BACKEND_URL = environment.apiUrl + '/ads/';
+const BACKEND_URL = environment.apiUrl + '/ads';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +21,7 @@ export class AdsService {
   constructor(private http: HttpClient, private router: Router) {  }
 
   getAds(adsPerPage: number, currentAd: number){
-    const queryParams = `?pagesize=${adsPerPage}&page${currentAd}`;
+    const queryParams = `?pagesize=${adsPerPage}&page=${currentAd}`;
     this.http.get<{message: string, ads: any, maxAds: number}>(BACKEND_URL + queryParams)
       .pipe(map((adData) => {
         return { ads: adData.ads.map((ad: { _id: any; title: any; itField: any; tech: any; about: any; imagePath: any; creator: any}) => ({

@@ -18,7 +18,7 @@ export class AdListComponent implements OnInit, OnDestroy {
   private authStatusSub!: Subscription;
   isLoading = false
   totalAds = 0;
-  adsPerPage = 2;
+  adsPerPage = 5;
   currentPage = 1;
   pageSizeOptions = [1, 2 ,5, 10];
   userIsAuth = false;
