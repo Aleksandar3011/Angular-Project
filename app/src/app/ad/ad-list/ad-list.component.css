@@ -1,38 +1,70 @@
-h1 {
-    text-align: center;
-    font-size: xx-large;
-    font-weight: bold;
-    padding-top: 15px;
+
+.mat-accordion {
+  width: 75%;
+  display: block;
+  margin: auto;
+  margin-top: 1rem;
 }
 
-example-card {
-    margin-top: 10px;
-    border-radius: 10px;
-    padding: 1em;
-    box-shadow: 0px 10px 5px;
-    margin-bottom: 1rem;
+.mat-accordion .mat-expansion-panel{
+  margin-bottom: 10px;
 }
 
-#noPost {
-    text-align: center;
-    font-size: larger;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+ h1 {
+  margin-top: 2%;
+  text-align: center;
+  font-size: xx-large;
+  font-weight: 700;
 }
 
 mat-spinner {
   margin: auto;
 }
 
-.post-image {
-  width: 50%;
+mat-paginator {
+  margin-top: 1rem;
 }
 
-.post-image img{
-  width: 50%;
-  /* box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5); */
+.info-text {
+  text-align: center;
+}
+
+.post-image {
+  width: 100%;
+}
+
+.post-image img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 13%;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+  margin-bottom: 30px;
+}
+
+.ad-title {
+  font-size: 135%
 }
 
 mat-paginator {
-  margin-top: 1rem;
+  margin: auto;
+  width: 75%;
+}
+.contnet {
+  margin: auto;
+  font-size: 115%;
+  width: 450px;
+}
+
+.weOffer {
+  white-space: pre-wrap;
+}
+
+.ifYouHave {
+  white-space: pre-wrap;
+}
+
+.email {
+  margin-top: 50px;
+  font-weight: 500;
 }

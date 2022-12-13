@@ -2,9 +2,11 @@ const express = require('express');
 const bodyParser = require("body-parser");
 const mongoose = require('mongoose');
 const path = require('path')
+const cors = require('cors')
 
 const adsRoutes = require("./routes/ads")
 const userRoutes = require('./routes/user');
+const homeRoutes = require('./routes/home')
 
 const app = express();
 
@@ -33,7 +35,11 @@ app.use((req, res, next) => {
   next();
 });
 
+// app.use(cors({origin: 'http://localhost:4200'}));
+
+app.use('/', homeRoutes)
 app.use("/api/ads", adsRoutes);
 app.use("/api/user", userRoutes);
+
 
 module.exports = app;

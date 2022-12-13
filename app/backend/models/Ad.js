@@ -18,6 +18,14 @@ const adSchema = mongoose.Schema({
     type: String,
     required: true
   },
+  ifYouHave: {
+    type: String,
+    required: true
+  },
+  weOffer: {
+    type: String,
+    required: true
+  },
   imagePath: {
     type: String,
     required: true

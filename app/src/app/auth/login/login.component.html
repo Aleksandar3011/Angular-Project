@@ -1,40 +1,8 @@
-<!-- <form>
-	<div class="login-container">
-		<div class="login-content">
-			<mat-toolbar class="login-toolbar" color="primary">Recipe Book</mat-toolbar>
-			<mat-card>
-				<form  >
-					<mat-form-field>
-						<mat-icon matPrefix>person_outline</mat-icon>
-						<input autofocus type="text" matInput placeholder="Username" formControlName="email">
-					</mat-form-field>
-
-					<mat-form-field>
-						<mat-icon matPrefix>lock_outline</mat-icon>
-						<input type="password" autocomplete="false" matInput placeholder="Password"  formControlName="password">
-					</mat-form-field>
-
-					<button type="submit" mat-raised-button color="primary">LOGIN</button>
-        </form>
-
-
-          <span> If You don't have a account yet please <a routerLink ='/register'>REGISTER HERE</a></span>
-
-
-
-
-			</mat-card>
-		</div>
-	</div> -->
-
-  <mat-card>
+<mat-card>
     <mat-card-content>
     <mat-spinner *ngIf="isLoading"></mat-spinner>
       <form (submit)="onLogin(loginForm)" #loginForm="ngForm" *ngIf="!isLoading">
         <h2>Log In</h2>
-        <!-- <mat-error >
-          The email and password were not recognized
-        </mat-error> -->
         <mat-form-field>
           <input matInput type="email" name="email" ngModel placeholder="Email" required #emailInput="ngModel">
           <mat-error *ngIf="emailInput.invalid">
@@ -50,6 +18,6 @@
             <button mat-raised-button color="primary" *ngIf="!isLoading">Login</button>
 
           </form>
-          <p>Don't have account? <button>REGISTER</button></p>
+          <p>Don't have account? <button (click)="toRegisterPage()">REGISTER</button></p>
         </mat-card-content>
       </mat-card>

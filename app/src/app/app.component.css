@@ -1,0 +1,45 @@
+/* app-footer {
+
+  left: 0;
+
+  bottom: 0;
+
+  width: 100%;
+
+  background-color: red;
+
+  color: white;
+
+  text-align: center;
+} */
+
+main{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+app-footer {
+    /* display: flex;
+    flex-direction: column;
+    min-height: 100vh; */
+    margin-top: auto;
+}
+
+app-header {
+  order: 0;
+
+  /* position: sticky; */
+
+  left: 0;
+
+  top: 0;
+
+  width: 100%;
+
+  background-color: red;
+
+  color: white;
+
+  text-align: center;
+}

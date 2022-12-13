@@ -46,6 +46,12 @@ export class AdCreateComponent implements OnInit, OnDestroy {
       'about': new FormControl(null, {
         validators: [Validators.required, Validators.minLength(10)]
       }),
+      'ifYouHave': new FormControl(null, {
+        validators: [Validators.required, Validators.minLength(3)]
+      }),
+      'weOffer': new FormControl(null, {
+        validators: [Validators.required, Validators.minLength(3)]
+      }),
       'image': new FormControl(null, {
         validators: [Validators.required], asyncValidators: [mimeType]
       }),
@@ -58,8 +64,8 @@ export class AdCreateComponent implements OnInit, OnDestroy {
         this.isLoading = true;
         this.adsService.getAd(this.adId).subscribe(adData => {
           this.isLoading = false;
-          this.ad = { id: adData._id, title: adData.title, tech: adData.tech, itField: adData.itField, about: adData.about, imagePath: adData.imagePath, creator: adData.creator}
-          this.form.setValue({ 'title': this.ad.title, 'tech': this.ad.tech, 'itField': this.ad.itField, 'about': this.ad.about, 'image': this.ad.imagePath });
+          this.ad = { id: adData._id, title: adData.title, tech: adData.tech, itField: adData.itField, about: adData.about, weOffer: adData.weOffer, ifYouHave: adData.ifYouHave,  imagePath: adData.imagePath, creator: adData.creator}
+          this.form.setValue({ 'title': this.ad.title, 'tech': this.ad.tech, 'itField': this.ad.itField, 'about': this.ad.about, 'weOffer': this.ad.weOffer, 'ifYouHave': this.ad.ifYouHave, 'image': this.ad.imagePath });
         });
       } else {
         this.mode = 'create';
@@ -85,9 +91,9 @@ export class AdCreateComponent implements OnInit, OnDestroy {
     }
     this.isLoading = true;
     if (this.mode == 'create') {
-      this.adsService.addAd(this.form.value.title, this.form.value.tech, this.form.value.itField, this.form.value.about, this.form.value.image)
+      this.adsService.addAd(this.form.value.title, this.form.value.tech, this.form.value.itField, this.form.value.about, this.form.value.weOffer, this.form.value.ifYouHave, this.form.value.image)
     } else {
-      this.adsService.updateAd(this.adId, this.form.value.title, this.form.value.tech, this.form.value.itField, this.form.value.about, this.form.value.image);
+      this.adsService.updateAd(this.adId, this.form.value.title, this.form.value.tech, this.form.value.itField, this.form.value.about, this.form.value.weOffer, this.form.value.ifYouHave, this.form.value.image);
     }
     this.form.reset();
   }

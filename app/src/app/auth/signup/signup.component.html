@@ -22,18 +22,18 @@
           </mat-error>
         </mat-form-field>
 
-        <!-- <mat-form-field>
-            <input matInput type="password" placeholder="Repeat Password" required>
-            <mat-error>
-              Please provide a valid password
-            </mat-error>
-          </mat-form-field> -->
+        <mat-form-field>
+          <input matInput type="password" name="repeatPassword" ngModel placeholder="Repeat Password" required  #repeatPassword="ngModel">
+          <mat-error *ngIf="repeatPassword.invalid">
+            Please provide a valid repeat password
+          </mat-error>
+        </mat-form-field>
 
         <button mat-raised-button color="primary" *ngIf="!isLoading">Singup</button>
 
       </form>
 
-      <p>Already have account? <button>LOGIN</button></p>
+      <p>Already have account? <button (click)="toLoginPage()">LOGIN</button></p>
     </mat-card-content>
   </mat-card>
 

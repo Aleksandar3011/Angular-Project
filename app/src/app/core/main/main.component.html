@@ -1,71 +1,41 @@
 <h1>SoftUni JOBS App</h1>
 
-<p class="top-three">These are the top 3 most liked ads:</p>
-<div class="card">
+<p class="top-three">These are the last 3 ads added:</p>
 
-    <mat-card class="example-card">
-        <mat-card-header>
-            <mat-card-title>AD TITLE</mat-card-title>
-            <!--         <mat-card-subtitle> 
-                One stop solution for all CS Subjects 
-            </mat-card-subtitle> -->
-</mat-card-header>
-<mat-card-content>
-    <p>
-        This is DESCRIPTION
-            </p>
-      
-</mat-card-content>
-<mat-card-actions>
-    <button mat-button style=
-                    "background-color:#ffa000; 
-                     color:white"> 
-                DETAILS
-            </button>
-        </mat-card-actions>
-    </mat-card>
-    
-    <mat-card class="example-card">
-            <mat-card-header>
-                <mat-card-title>AD TITLE</mat-card-title>
-        <!--         <mat-card-subtitle> 
-            One stop solution for all CS Subjects 
-                </mat-card-subtitle> -->
-    </mat-card-header>
-    <mat-card-content>
-        <p>
-            This is DESCRIPTION
-                </p>
-          
-    </mat-card-content>
-    <mat-card-actions>
-        <button mat-button style=
-                        "background-color:#ffa000; 
-                         color:white"> 
-                    DETAILS
-                </button>
-            </mat-card-actions>
-        </mat-card>
-        
-        <mat-card class="example-card">
-            <mat-card-header>
-                <mat-card-title>AD TITLE</mat-card-title>
-                <!--         <mat-card-subtitle> 
-                    One stop solution for all CS Subjects 
-                </mat-card-subtitle> -->
-                </mat-card-header>
-                <mat-card-content>
-                <p>
-                    This is DESCRIPTION
-                </p>
-                
-                </mat-card-content>
-                <mat-card-actions>
-                    <button mat-button style=
-                            "background-color:#ffa000; 
-                             color:white"> 
-                        DETAILS
-                    </button>
-                </mat-card-actions>
-            </mat-card>
-        </div>
+    <mat-accordion multi="true">
+        <mat-expansion-panel *ngFor="let ad of lastThree">
+          <mat-expansion-panel-header class="ad-title">
+            {{ ad.title }}
+          </mat-expansion-panel-header>
+          <div class="post-image">
+            <img [src]="ad.imagePath" [alt]="ad.title">
+          </div>
+          <div class="contnet">
+            <strong>Tech Stack: </strong>
+            <p>
+              {{ad.tech}}
+            </p>
+            <strong>IT Field: </strong>
+            <p>
+              {{ad.itField}}
+            </p>
+            <strong>About us: </strong>
+            <p class="about">
+              {{ ad.about }}
+            </p>
+            <strong>If You Have: </strong>
+            <p class="ifYouHave">
+              {{ ad.ifYouHave }}
+            </p>
+            <strong>We Offer: </strong>
+            <p class="weOffer">
+              {{ ad.weOffer }}
+            </p>
+            <p class="email">
+              To apply, send your CV to email: jobs.app@softuni.bg
+            </p>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+
+      <p class="no-ads" *ngIf="lastThree.length <= 0">There are no ads!</p>

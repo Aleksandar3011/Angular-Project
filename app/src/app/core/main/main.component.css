@@ -1,6 +1,3 @@
-
-
-
 h1 {
     text-align: center;
     font-size: xx-large;
@@ -32,10 +29,8 @@ mat-card-title{
 }
 
 .card {
-    display: inline-flex;
-    /* text-align: center; */
-    margin-left: 290px;
-    margin-top: 20px;
+    margin: auto;
+    width: 70%;
 }
 
 .top-three {
@@ -45,3 +40,61 @@ mat-card-title{
     font-weight: bold;
     font-style: italic;
 }
+
+.post-image {
+    width: 100%;
+  }
+
+  .post-image img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 13%;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    margin-bottom: 30px;
+  }
+
+  .mat-accordion {
+    width: 75%;
+    display: block;
+    margin: auto;
+    margin-top: 1rem;
+  }
+
+  .mat-accordion .mat-expansion-panel{
+    margin-bottom: 10px;
+  }
+
+  .ad-title {
+    font-size: 135%
+  }
+
+.contnet {
+    white-space: pre-wrap;
+    margin: auto;
+    font-size: 115%;
+    width: 450px;
+  }
+
+  .weOffer {
+    white-space: pre-wrap;
+  }
+
+  .ifYouHave {
+    white-space: pre-wrap;
+  }
+
+  .email {
+    white-space: pre-wrap;
+    margin-top: 50px;
+    font-weight: 700;
+
+  }
+
+
+  .no-ads {
+    margin-top: 50px;
+    font-weight: bold;
+    font-style: italic;
+    text-align: center;
+  }

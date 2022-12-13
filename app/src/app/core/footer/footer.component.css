@@ -1,8 +1,10 @@
 mat-toolbar {
     background-color: #234465;
+
 }
 mat-toolbar-row {
     display: flex;
+    color: white;
     text-align: center;
     align-items: center;
     justify-content: center;

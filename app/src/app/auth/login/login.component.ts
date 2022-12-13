@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../auth.service';
 
@@ -13,7 +14,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   isLoading = false
   private authStatusSub!: Subscription;
 
-  constructor(public authService: AuthService){}
+  constructor(public authService: AuthService, private router: Router){}
 
   ngOnInit(): void {
     this.authStatusSub = this.authService.getAuthStatusListener().subscribe(
@@ -29,6 +30,10 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
     this.isLoading = true;
     this.authService.login(form.value.email, form.value.password)
+  }
+
+  toRegisterPage() {
+    this.router.navigate(["auth/signup"])
   }
 
   ngOnDestroy(): void {

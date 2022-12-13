@@ -8,6 +8,8 @@ exports.createAd = (req, res) => {
     tech: req.body.tech,
     itField: req.body.itField,
     about: req.body.about,
+    ifYouHave: req.body.ifYouHave,
+    weOffer: req.body.weOffer,
     imagePath: url + '/images/' + req.file.filename,
     creator: req.userData.userId
   });
@@ -39,6 +41,8 @@ exports.updateAd = (req, res, next) => {
     tech: req.body.tech,
     itField: req.body.itField,
     about: req.body.about,
+    ifYouHave: req.body.ifYouHave,
+    weOffer: req.body.weOffer,
     imagePath: imagePath,
     creator: req.userData.userId
   })

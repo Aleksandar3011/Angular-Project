@@ -4,6 +4,8 @@ export interface IAd {
     itField: string | undefined;
     title: string | undefined;
     about: string | undefined;
+    weOffer: string | undefined;
+    ifYouHave: string | undefined;
     imagePath: string | undefined
     creator: string | any
 }
