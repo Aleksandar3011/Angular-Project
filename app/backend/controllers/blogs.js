@@ -1,52 +1,46 @@
-const Ad = require('../models/Ad');
+const Blog = require('../models/Blogs');
 
 
-exports.createAd = (req, res) => {
+exports.createBlog = (req, res) => {
   const url = req.protocol + '://' + req.get('host');
-  const ad = new Ad({
+
+  const blog = new Blog({
     title: req.body.title,
-    tech: req.body.tech,
-    itField: req.body.itField,
-    about: req.body.about,
-    ifYouHave: req.body.ifYouHave,
-    weOffer: req.body.weOffer,
+    content: req.body.content,
     imagePath: url + '/images/' + req.file.filename,
     creator: req.userData.userId
   });
-  ad.save().then(createdAd => {
+  blog.save().then(createdBlog => {
     res.status(201).json({
-      message: 'Post added successfully!',
-      ad: {
-        ...createdAd,
-        id: createdAd._id
+      message: 'Blog added successfully!',
+      blog: {
+        ...createdBlog,
+        id: createdBlog._id
       }
     });
   })
   .catch(error => {
     res.status(500).json({
-      message: 'Creating a post faild!'
+      message: 'Creating a blog faild!'
     })
   })
 };
 
-exports.updateAd = (req, res, next) => {
+exports.updateBlog = (req, res, next) => {
   let imagePath = req.body.imagePath;
   if(req.file) {
     const url = req.protocol + '://' + req.get('host');
-    imagePath = url + 'ads' + '/images/' + req.file.filename
+    imagePath = url + 'blogs' + '/images/' + req.file.filename
   }
-  const ad = new Ad({
+  const blog = new Blog({
     _id: req.body.id,
     title: req.body.title,
-    tech: req.body.tech,
-    itField: req.body.itField,
-    about: req.body.about,
-    ifYouHave: req.body.ifYouHave,
-    weOffer: req.body.weOffer,
+    content: req.body.content,
     imagePath: imagePath,
     creator: req.userData.userId
   })
-  Ad.updateOne({_id: req.params.id, creator: req.userData.userId}, ad)
+
+  Blog.updateOne({_id: req.params.id, creator: req.userData.userId}, blog)
   .then(result => {
     if(result.matchedCount > 0) {
       res.status(200).json({
@@ -63,32 +57,32 @@ exports.updateAd = (req, res, next) => {
     })
 };
 
-exports.getAllAd = (req, res, next) => {
+exports.getAllBlog = (req, res, next) => {
   const pageSize = +req.query.pagesize;
   const currentPage = +req.query.page;
-  const adQuery = Ad.find();
-  let fetchedAds;
+  const blogQuery = Blog.find();
+  let fetchedBlogs;
   if(pageSize && currentPage) {
-    adQuery
+    blogQuery
       .skip(pageSize * (currentPage - 1))
       .limit(pageSize);
   }
-  adQuery.find()
+  blogQuery.find()
   .then(documents => {
-    fetchedAds = documents;
-    return Ad.count();
+    fetchedBlogs = documents;
+    return Blog.count();
   })
     .then(count => {
       res.status(200).json({
         message: 'Ads fetched successfully!',
-        ads: fetchedAds,
-        maxAds: count
+        blogs: fetchedBlogs,
+        maxBlogs: count
       })
     })
 };
 
-exports.deleteAd = (req, res, next) => {
-  Ad.deleteOne({_id: req.params.id, creator: req.userData.userId}).then(result => {
+exports.deleteBlog = (req, res, next) => {
+  Blog.deleteOne({_id: req.params.id, creator: req.userData.userId}).then(result => {
     if(result.deletedCount > 0) {
       res.status(200).json({message: 'Deletion successful!'})
     }else{
@@ -102,18 +96,20 @@ exports.deleteAd = (req, res, next) => {
   })
 };
 
-exports.getAd = (req, res, next) => {
-  Ad.findById(req.params.id).then(ad => {
-    if(ad) {
-      res.status(200).json(ad)
+exports.getBlog = (req, res, next) => {
+  console.log(`here`);
+  Blog.findById(req.params.id).then(blog => {
+    if(blog) {
+      res.status(200).json(blog)
     }else{
+      console.log(`here`);
       res.status(404).json({
-        message: "Ad not found!"
+        message: "Blog not found!"
       })
     }
   }).catch(error => {
     res.status(500).json({
-      message: 'Fetching ads failed!'
+      message: 'Fetching blogs failed!'
     });
   })
 };

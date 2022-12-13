@@ -6,10 +6,12 @@
 <ul class="nav">
   <li class="links">
     <a mat-button routerLink="/ad/dashboard" routerLinkActive="mat-accent">JOBS</a>
+    <a mat-button routerLink="/blog/dashboard" routerLinkActive="mat-accent">NEWS</a>
     <a mat-button routerLink="/about" routerLinkActive="mat-accent">About</a>
 
     <ng-container *ngIf="userIsAuth">
-      <a mat-button routerLink="/ad/create" routerLinkActive="mat-accent">Create</a>
+      <a mat-button routerLink="/ad/create" routerLinkActive="mat-accent">Create Ad</a>
+      <a mat-button routerLink="/blog/create" routerLinkActive="mat-accent">Create NEWS</a>
     </ng-container>
 
     <ng-container *ngIf="!userIsAuth">

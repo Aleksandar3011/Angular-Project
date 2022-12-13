@@ -53,9 +53,8 @@ mat-paginator {
 .contnet {
   margin: auto;
   font-size: 115%;
-  width: 450px;
   white-space: pre-wrap;
-
+  width: 450px;
 }
 
 .weOffer {

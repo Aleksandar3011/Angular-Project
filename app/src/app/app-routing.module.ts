@@ -5,6 +5,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdCreateComponent } from './ad/ad-create/ad-create.component';
 import { AdListComponent } from './ad/ad-list/ad-list.component';
 import { AuthGuard } from './auth/auth.guard';
+import { BlogCreateComponent } from './blog/blog-create/blog-create.component';
+import { BlogListComponent } from './blog/blog-list/blog-list.component';
 
 import { AboutComponent } from './core/about/about.component';
 import { MainComponent } from './core/main/main.component';
@@ -32,6 +34,20 @@ const routes: Routes = [
   {
     path: 'edit/:adId',
     component: AdCreateComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'blog/dashboard',
+    component: BlogListComponent
+  },
+  {
+    path: 'blog/create',
+    component: BlogCreateComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'edit/:blogId',
+    component: BlogCreateComponent,
     canActivate: [AuthGuard]
   },
   {

@@ -29,8 +29,6 @@ export class MainComponent implements OnInit {
         this.last = lThree
         const lastThree = this.last.ads.slice(-3)
         this.lastThree = lastThree
-        console.log(lastThree.length);
-
       });
 
   }

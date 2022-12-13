@@ -7,6 +7,7 @@ const cors = require('cors')
 const adsRoutes = require("./routes/ads")
 const userRoutes = require('./routes/user');
 const homeRoutes = require('./routes/home')
+const blogRoutes = require('./routes/blogs')
 
 const app = express();
 
@@ -38,6 +39,7 @@ app.use((req, res, next) => {
 // app.use(cors({origin: 'http://localhost:4200'}));
 
 app.use('/', homeRoutes)
+app.use("/api/blogs", blogRoutes);
 app.use("/api/ads", adsRoutes);
 app.use("/api/user", userRoutes);
 
