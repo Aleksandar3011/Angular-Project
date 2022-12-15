@@ -8,5 +8,5 @@ This project represents application in which everyone who has a registration can
                         npm i
                         ng serve
                         
-        2nd terminal: cd ./app
-                      npm run start:server
+        Second terminal: cd ./app
+                         npm run start:server
