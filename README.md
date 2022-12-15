@@ -6,6 +6,6 @@ This project represents application in which everyone who has a registration can
 
 --First terminal: cd app
                   ng server
-                  
+  
 --Second terminal: cd app
                    npm run start:server
