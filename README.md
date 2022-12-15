@@ -4,8 +4,9 @@ This project represents application in which everyone who has a registration can
 
 Тo run the project open two terminals:
 
---First terminal: cd app
-                  ng server
-  
---Second terminal: cd app
-                   npm run start:server
+        First terminal: cd ./app
+                        npm i
+                        ng serve
+                        
+        2nd terminal: cd ./app
+                      npm run start:server
